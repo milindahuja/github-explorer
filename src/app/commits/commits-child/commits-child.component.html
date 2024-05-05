@@ -1,0 +1,25 @@
+<form [formGroup]="searchForm" (ngSubmit)="searchCommits()">
+    <label>Author:</label>
+    <input type="text" formControlName="author">
+    <label>Commit Message:</label>
+    <input type="text" formControlName="message">
+    <button type="submit">Search</button>
+  </form>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Author</th>
+        <th>URL</th>
+        <th>Message</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let commit of commits">
+        <td>{{ commit?.author?.login }}</td>
+        <td><a [href]="commit.url" target="_blank">{{ commit.url }}</a></td>
+        <td>{{ commit.commit.message }}</td>
+      </tr>
+    </tbody>
+  </table>
+  

@@ -1,0 +1,26 @@
+<form [formGroup]="searchForm" (ngSubmit)="searchRepositories()">
+  <label>Name:</label>
+  <input type="text" formControlName="name">
+  <label>Language:</label>
+  <input type="text" formControlName="language">
+  <label>Min Stars:</label>
+  <input type="number" formControlName="minStars">
+  <button type="submit">Search</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Owner Avatar</th>
+      <th>Creation Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let repo of repositories" (click)="viewCommits.emit(repo.name)" class="cursor-pointer">
+      <td>{{ repo.name }}</td>
+      <td><img [src]="repo.owner.avatar_url" alt="Owner Avatar" width="50"></td>
+      <td>{{ repo.created_at }}</td>
+    </tr>
+  </tbody>
+</table>
